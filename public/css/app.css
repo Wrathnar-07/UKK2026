@@ -268,5 +268,7 @@ footer{
 /*Main content*/
 main{
     background-color: #cccccc;
-    border: 8px solid #7f1734;
+    border-top: 8px solid #7f1734;
+    right: 0;
+    left: 0;
 }
