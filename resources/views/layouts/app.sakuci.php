@@ -16,6 +16,10 @@
 
     {{-- Bootstrap 5.3.8 -- file lokal, tidak butuh internet --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <?php
+        $current = "admin";
+    ?>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-body-tertiary">
 

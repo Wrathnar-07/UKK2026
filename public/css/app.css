@@ -1,15 +1,34 @@
+/*Shape lib*/
 .hexagon{
-    width: 40px;
+    width: 1.5rem;
     aspect-ratio: cos(30deg);   /*6 Point ratio*/
     clip-path: polygon(
         -50% 50%,               /*Left point*/
         50% 100%,               /*Bottom point*/
         150% 50%,               /*Right point*/
-        50% 0                   /*Top point*/
+        50% 0%                  /*Top point*/
     );
+    background-color: #8b0000;
+}
+.rombus{
+    width: 1.5rem;
+    aspect-ratio: 1;
+    clip-path: polygon(
+        50% 0%,     /*Top point*/
+        100% 50%,   /*Right point*/
+        50% 100%,   /*Bottom point*/
+        0% 50%,     /*Left point*/
+    );
+    background-color: #8b0000;
+}
+.circle{
+    width: 1.5rem;
+    aspect-ratio: 1;
+    clip-path: circle(50%);
+    background-color: #8b0000;
 }
 .star{
-    width: 40px;
+    width: 1.5rem;
     aspect-ratio: 1;
     clip-path: polygon(
         50% 0%,     /*Top point*/
@@ -21,4 +40,232 @@
         0% 50%,     /*Left point*/
         37.5% 37.5% /*Top-Left bevel*/
     );
+}
+.cross {
+    --b: 30px; /*thickness*/
+    --s: 35px; /*space around*/            
+    --c: #8b0000;
+    
+    height: 2.5rem;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    --g:conic-gradient(var(--c) 0 0) no-repeat 50%/;
+    background: 
+        var(--g) var(--b) calc(100% - 2*var(--s)),
+        var(--g) calc(100% - 2*var(--s)) var(--b);
+    rotate: 45deg;
+}
+.big-line{
+    width: 100%;
+    height: 2px;
+    margin-top: 4px;
+    background-color: #8b0000;
+    left: 0;
+}
+.small-line{
+    width: 75%;
+    height: 2px;
+    margin-top: 4px;
+    background-color: #8b0000;
+    left: 0;
+}
+.lines{
+    width: 2.5rem;
+    aspect-ratio: 1;
+    background: linear-gradient(#808080 50%,#7f1734 0) top/100% 40% repeat-y;
+}
+.horizontal-line{
+    width: 2px;
+    height: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: #8b0000;
+    top: 0;
+    bottom: 0;
+}
+
+/*Format lib*/
+.joint{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+h4{
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+    color: #0d0d0d;
+    margin: 0;
+}
+h5{
+    font-size: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+    color: #0d0d0d;
+    margin: 0;
+}
+a{
+    font-size: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+    color: #0d0d0d;
+}
+input{
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+    color: #0d0d0d;
+    width: 50%;
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    row-gap: 1rem;
+    top: 0;
+}
+button{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/*Mode lib*/
+.light-mode{
+    color: #0d0d0d;
+    background-color: #505050;
+    border-color: #7f1734;
+}
+.dark-mode{
+    color: #cccccc;
+    background-color: #0d0d0d;
+    border-color: #dc143c;
+}
+ 
+/*Nav orientation*/
+nav{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.nav-main{
+    width: 20vw;
+    height: 100vh;
+    padding: 10px;
+    flex-direction: column;
+
+    border-right: 4px solid #7f1734;
+    background-color: #505050;
+}
+.nav-toggle{
+    width: 5vw;
+    aspect-ratio: 1;
+    border-right: 4px solid #7f1734;
+    border-bottom: 4px solid #7f1734;
+    background-color: #505050;
+    clip-path: polygon(
+        0% 0%,                  /*Left point*/
+        0% 100%,                /*Bottom point*/
+        75% 100%,               /*Bevel point*/
+        100% 75%,               /*Bevel point*/
+        100% 0%                 /*Top point*/
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Darkmode switch*/
+.toggle-theme-switch {
+    width: 4.5rem;
+    height: 2rem;
+    background-color: #cccccc;
+    border-radius: 34px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    padding: 0;
+    align-items: center;
+}
+.toggle-noch {
+    width: 2rem;
+    aspect-ratio: cos(30deg);
+    clip-path: polygon(
+        -50% 50%,               /*Left point*/
+        50% 100%,               /*Bottom point*/
+        150% 50%,               /*Right point*/
+        50% 0%                  /*Top point*/
+    );
+    background-color: #8b0000;
+
+    position: absolute;
+    transition: transform 0.3s ease;
+}
+.toggle-theme-switch.active {
+    background-color: #ed115f;
+}
+.toggle-theme-switch.active .toggle-noch {
+    transform: translateX(3rem);
+}
+.themes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+/*Account*/
+.account{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+/*Buttons*/
+.searchBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*Footer*/
+footer{
+    width: 100vw;
+    height: 5vh;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+
+    align-self: end;
+    align-content: center;
+    row-gap: 20%;
+    padding: 4px;
+    bottom: 0;
+    left: 0;
+    z-index: 150;
+
+    background-color: #505050;
+    border-top: 4px solid #7f1734;
+}
+.footer-text{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: 4px;
+    align-items: center;
+}
+
+/*Main content*/
+main{
+    background-color: #cccccc;
+    border: 8px solid #7f1734;
 }

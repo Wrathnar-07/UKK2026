@@ -56,6 +56,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/database/export', [DatabaseController::class, 'export'])->name('admin.database.export');
 });
 
+/*Area routing*/
+Route::get('/area', [AuthController::class, 'area'])->name('area')->middleware('guest');
+Route::post('/area', [AuthController::class, 'area'])->name('area')->middleware('guest');
+Route::get('/spot', [ProductController::class, 'index']);
+
 /*
 |--------------------------------------------------------------------------
 | Route role dinamis

@@ -1,27 +1,22 @@
-/*
-| Toggle tema gelap/terang lewat klik logo (#themeToggle). Warna cincin logo
-| otomatis mengikuti [data-bs-theme] lewat CSS (lihat .logo-ring di app.css),
-| jadi di sini cukup ganti atribut & simpan pilihannya.
-|
-| Pemilihan awal (sebelum file ini dimuat) sudah diterapkan lewat script
-| kecil di <head> supaya tidak ada flash warna -- lihat layouts/app.sakuci.php.
-*/
-(function () {
-    var STORAGE_KEY = 'sakuci-theme';
-    var root = document.documentElement;
+const toggleButton = document.getElementById('toggleThemeSwitch');
+const darkMode = document.getElementById('lightMode');
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var button = document.getElementById('themeToggle');
+toggleButton.addEventListener('click', () => {
+  // 1. Toggle
+  toggleButton.classList.toggle('active');
 
-        if (! button) {
-            return;
-        }
+  // 2. currently active
+  const isActive = toggleButton.classList.contains('active');
 
-        button.addEventListener('click', function () {
-            var next = root.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+  // 3. Update accessibility state
+  toggleButton.setAttribute('aria-checked', isActive ? 'true' : 'false');
 
-            root.setAttribute('data-bs-theme', next);
-            localStorage.setItem(STORAGE_KEY, next);
-        });
-    });
-})();
+  // 4. Change text
+  darkMode.textContent = (isActive ? 'Darkmode  ' : 'Lightmode ');
+
+  // 5. Chance themes, with exeptions
+
+});
+
+const type = document.getElementById('userType')
+const account = document.getElementById('accountShape');
