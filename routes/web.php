@@ -6,6 +6,14 @@ use App\Controllers\Core\DatabaseController;
 use App\Controllers\Core\DocsController;
 use App\Controllers\Core\RoleController;
 use App\Controllers\Core\UserController;
+
+use App\Controllers\AreaControler;
+use App\Controllers\BlacklistControler;
+use App\Controllers\LogControler;
+use App\Controllers\ReserveControler;
+use App\Controllers\TaxControler;
+use App\Controllers\VehicleControler;
+use App\Controllers\WhitelistControler;
 use Sakuci\Route;
 
 /*
@@ -23,6 +31,16 @@ use Sakuci\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+Route::get('/', function () {
+    return view('area');
+})->name('area');
+Route::get('/', function () {
+    return view('config');
+})->name('config');
+Route::get('/', function () {
+    return view('list');
+})->name('list');
+
 
 Route::get('/docs', [DocsController::class, 'index'])->name('docs');
 
@@ -40,6 +58,27 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register')->middleware('guest');
 Route::post('/register', [AuthController::class, 'register'])->name('register.attempt')->middleware('guest');
 
+Route::get('/area', [AuthController::class, 'showArea'])->name('area')->middleware('guest');
+Route::post('/area', [AuthController::class, 'area'])->name('area.show')->middleware('guest');
+
+Route::get('/tax', [AuthController::class, 'showTax'])->name('tax')->middleware('admin');
+Route::post('/tax', [AuthController::class, 'tax'])->name('tax.show')->middleware('admin');
+
+Route::get('/vehicle', [AuthController::class, 'showVehicle'])->name('vehicle')->middleware('admin');
+Route::post('/vehicle', [AuthController::class, 'vehicle'])->name('vehicle.show')->middleware('admin');
+
+Route::get('/log', [AuthController::class, 'showLog'])->name('log')->middleware('admin');
+Route::post('/log', [AuthController::class, 'log'])->name('log.show')->middleware('admin');
+
+Route::get('/reserve', [AuthController::class, 'showReserve'])->name('reserve')->middleware('admin');
+Route::post('/reserve', [AuthController::class, 'reserve'])->name('reserve.show')->middleware('admin');
+
+Route::get('/whitelist', [AuthController::class, 'showWhitelist'])->name('whitelist')->middleware('admin');
+Route::post('/whitelist', [AuthController::class, 'whitelist'])->name('whitelist.show')->middleware('admin');
+
+Route::get('/blacklist', [AuthController::class, 'showBlacklist'])->name('blacklist')->middleware('admin');
+Route::post('/blacklist', [AuthController::class, 'blacklist'])->name('blacklist.show')->middleware('admin');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -55,11 +94,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::get('/database/export', [DatabaseController::class, 'export'])->name('admin.database.export');
 });
-
-/*Area routing*/
-Route::get('/area', [AuthController::class, 'area'])->name('area')->middleware('guest');
-Route::post('/area', [AuthController::class, 'area'])->name('area')->middleware('guest');
-Route::get('/spot', [ProductController::class, 'index']);
 
 /*
 |--------------------------------------------------------------------------

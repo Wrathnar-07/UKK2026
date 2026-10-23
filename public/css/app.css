@@ -198,6 +198,7 @@ nav{
 .toggle-noch {
     width: 2rem;
     aspect-ratio: cos(30deg);
+    align-self: center;
     clip-path: polygon(
         -50% 50%,               /*Left point*/
         50% 100%,               /*Bottom point*/
